@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "885851601247",
+    "firebase_url": "https://tabeeb-17d27.firebaseio.com",
+    "project_id": "tabeeb-17d27",
+    "storage_bucket": "tabeeb-17d27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885851601247:android:5e0963560e2c930e",
+        "android_client_info": {
+          "package_name": "com.example.johnabbas.tabeeb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885851601247-2tujsik1qb9bere41rnnehun9ghteq58.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.johnabbas.tabeeb",
+            "certificate_hash": "e8586a8ecf0482dc4935fdf0631e264cb1a71eb3"
+          }
+        },
+        {
+          "client_id": "885851601247-rknb7tt8iqj4k8l5nvd7uqkp2b26tlec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrdj0NfiFuEgSLAkcy0OAX6nOvm-K5oXw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885851601247-rknb7tt8iqj4k8l5nvd7uqkp2b26tlec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
