@@ -5,7 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -25,6 +27,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class loginScreen extends AppCompatActivity implements OnClickListener {
 
@@ -33,8 +41,8 @@ public class loginScreen extends AppCompatActivity implements OnClickListener {
     static final int SIGN_IN_REQ = 1;
 
     private FirebaseAuth mAuth;
+    private EditText etEmail,etPass;
 
-    private EditText etEmail,etPass,etConPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
@@ -44,7 +52,6 @@ public class loginScreen extends AppCompatActivity implements OnClickListener {
 
         etEmail = (EditText) findViewById(R.id.etEmailId);
         etPass = (EditText) findViewById(R.id.etPassword);
-        etConPass = (EditText) findViewById(R.id.etConfirmPassword);
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -54,7 +61,6 @@ public class loginScreen extends AppCompatActivity implements OnClickListener {
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
@@ -72,16 +78,8 @@ public class loginScreen extends AppCompatActivity implements OnClickListener {
         super.onStart();
 
         FirebaseUser currentUser  = mAuth.getCurrentUser();
-
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-
         if(currentUser!= null) {
-            launchNextAct(currentUser);
-        }
-        else {
-            launchNextAct(account);
+            launchNextAct(currentUser.getUid());
         }
     }
 
@@ -108,6 +106,16 @@ public class loginScreen extends AppCompatActivity implements OnClickListener {
     }
 
     private void signInUsingEmail() {
+        if((etEmail.getText().toString().isEmpty()) || (etPass.getText().toString().isEmpty())) {
+            Toast.makeText(loginScreen.this, "Enter Both Email and Password to Login.",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!isValidEmail(etEmail.getText())){
+            Toast.makeText(loginScreen.this, "Enter Correct Email.",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
         mAuth.signInWithEmailAndPassword(etEmail.getText().toString(), etPass.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -116,20 +124,21 @@ public class loginScreen extends AppCompatActivity implements OnClickListener {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Message", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(loginScreen.this, "Signed In.",
-                                    Toast.LENGTH_SHORT).show();
-                            launchNextAct(user);
+
+                            String id = user.getUid();
+                            launchNextAct(id);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("Error", "signInWithEmail:failure", task.getException());
                             Toast.makeText(loginScreen.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
                         }
-
-                        // ...
                     }
                 });
+    }
+
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
     @Override
@@ -157,21 +166,39 @@ public class loginScreen extends AppCompatActivity implements OnClickListener {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Message", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            launchNextAct(acct);
-                            //updateUI(user);
+                            String id = user.getUid();
 
+                            checkIfGoogleUserExists(id);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(ERROR, "signInWithCredential:failure", task.getException());
                             Toast.makeText(loginScreen.this,"Error : ", Toast.LENGTH_SHORT).show();
-                            //Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-
-                            //updateUI(null);
                         }
-
-                        // ...
                     }
                 });
+    }
+
+    private boolean checkIfGoogleUserExists(final String userID){
+        DatabaseReference userDetRef = FirebaseDatabase.getInstance().getReference("UserDetails");
+        userDetRef.orderByKey().equalTo(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()) {
+                    Intent newAct = new Intent(loginScreen.this,userInfo.class);
+                    newAct.putExtra("UID",userID);
+                    startActivity(newAct);
+                }
+                else {
+                    launchNextAct(userID);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return true;
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
@@ -179,39 +206,20 @@ public class loginScreen extends AppCompatActivity implements OnClickListener {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-
-            //launchNextAct(account);
-
             firebaseAuthWithGoogle(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(ERROR, "signInResult:failed code=" + e.getStatusCode());
 
-            //updateUI(null);
         }
     }
 
-    private void launchNextAct(GoogleSignInAccount account){
+    private void launchNextAct(String userID){
 
-        if(account != null) {
-            Intent newAct = new Intent(this,dashboard.class);
-            startActivity(newAct);
-        }
-        else{
-            Toast.makeText(this,"Login First" ,Toast.LENGTH_SHORT).show();
-        }
+        Intent newAct = new Intent(this,dashboard.class);
+        newAct.putExtra("UID",userID);
+        startActivity(newAct);
     }
 
-
-    private void launchNextAct(FirebaseUser user){
-
-        if(user != null) {
-            Intent newAct = new Intent(this,dashboard.class);
-            startActivity(newAct);
-        }
-        else{
-            Toast.makeText(this,"Login First" ,Toast.LENGTH_SHORT).show();
-        }
-    }
 }

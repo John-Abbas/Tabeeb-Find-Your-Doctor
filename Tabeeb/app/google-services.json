@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "885851601247-r3a5c59mdid6o1htkmu71eu0ebjc84ht.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.johnabbas.tabeeb",
+            "certificate_hash": "943914a6bc2989cd51f2ed06de1ab0309d024534"
+          }
+        },
+        {
           "client_id": "885851601247-rknb7tt8iqj4k8l5nvd7uqkp2b26tlec.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -40,7 +48,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "885851601247-rknb7tt8iqj4k8l5nvd7uqkp2b26tlec.apps.googleusercontent.com",
+              "client_id": "885851601247-t4jjsfk54303h1gjm9l2dqhgn1hspjtq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

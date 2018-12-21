@@ -22,7 +22,8 @@
             android:name=".dashboard"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SignUp"></activity>
+        <activity android:name=".SignUp" />
+        <activity android:name=".userInfo"></activity>
     </application>
 
 </manifest>
