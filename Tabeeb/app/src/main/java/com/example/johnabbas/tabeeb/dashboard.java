@@ -18,6 +18,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -31,14 +36,24 @@ public class dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseUser user;
+    private GoogleSignInClient mGoogleSignInClient;
     TextView tvUserName,tvEmail;
-    NavHandler navHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         String userID = getIntent().getStringExtra("UID");
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -64,7 +79,8 @@ public class dashboard extends AppCompatActivity
         tvUserName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tvUserName);
         tvEmail  = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tvEmail);
         searchUser(userID);
-        navHandler = new NavHandler();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentAppointment()).commit();
     }
 
     private void searchUser(final String userID){
@@ -140,13 +156,16 @@ public class dashboard extends AppCompatActivity
                 break;
 
             case R.id.appoint:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentAppointment()).commit();
                 break;
 
             case R.id.about:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentAbout()).commit();
                 break;
 
             case R.id.sign_out:
-                navHandler.signOutFirebase();
+                FirebaseAuth.getInstance().signOut();
+                revokeAccess();
                 Intent newAct = new Intent(this,loginScreen.class);
                 startActivity(newAct);
                 break;
@@ -155,6 +174,16 @@ public class dashboard extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void revokeAccess() {
+        mGoogleSignInClient.revokeAccess()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // ...
+                    }
+                });
     }
 
 
