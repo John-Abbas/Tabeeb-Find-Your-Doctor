@@ -6,23 +6,63 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="5dp"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorAccent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/desigItem"
+            android:gravity="center"
+            android:text="Designation"
+            android:textSize="25sp"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/lobster"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#81abef">
         <ImageView
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:scaleType="fitCenter"
-            android:layout_margin="8dp"
+            android:layout_margin="10dp"
             android:id="@+id/imageItem"
             android:layout_weight="1"/>
 
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textItem"
-            android:text="New Text"
-            android:textSize="20sp"
+            android:layout_height="match_parent"
             android:layout_weight="3"
-            android:layout_margin="25dp"
-            />
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameItem"
+                android:text="Name"
+                android:textSize="20sp"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/quadrangle"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailItem"
+                android:text="New Text"
+                android:textSize="15sp"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/magnificent"
+                />
+        </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -20,19 +20,14 @@
             android:id="@+id/appoint"
             android:icon="@drawable/ic_appoint"
             android:title="Appointments" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_exclamation"
+            android:title="About" />
+
+        <item
+            android:id="@+id/sign_out"
+            android:icon="@drawable/ic_sign_out"
+            android:title="Log Out" />
     </group>
-
-    <item android:title="Application">
-        <menu>
-            <item
-                android:id="@+id/about"
-                android:icon="@drawable/ic_exclamation"
-                android:title="About" />
-            <item
-                android:id="@+id/sign_out"
-                android:icon="@drawable/ic_sign_out"
-                android:title="Log Out" />
-        </menu>
-    </item>
-
 </menu>

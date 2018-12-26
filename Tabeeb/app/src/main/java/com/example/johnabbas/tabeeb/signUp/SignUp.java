@@ -1,4 +1,4 @@
-package com.example.johnabbas.tabeeb;
+package com.example.johnabbas.tabeeb.signUp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
+import com.example.johnabbas.tabeeb.R;
+import com.example.johnabbas.tabeeb.dashboard;
+import com.example.johnabbas.tabeeb.userDetails;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
