@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import com.example.johnabbas.tabeeb.R;
 import com.example.johnabbas.tabeeb.about.ListAdapter;
@@ -26,6 +27,12 @@ public class FragmentAbout extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        final ScrollView sv = (ScrollView) mView.findViewById(R.id.scrollAbout);
+        sv.post(new Runnable() {
+            public void run() {
+                sv.smoothScrollTo(0, 0);
+            }
+        });
         return mView;
     }
 }

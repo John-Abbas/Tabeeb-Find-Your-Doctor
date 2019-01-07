@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.johnabbas.tabeeb.about.FragmentAbout;
 import com.example.johnabbas.tabeeb.appointments.FragmentAppointment;
+import com.example.johnabbas.tabeeb.searchDoctor.FragmentSearchDoc;
 import com.example.johnabbas.tabeeb.searchMap.FragmentSearchMap;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -150,6 +151,7 @@ public class dashboard extends AppCompatActivity
                 break;
 
             case R.id.search_doctor:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSearchDoc()).commit();
                 break;
 
             case R.id.search_map:
