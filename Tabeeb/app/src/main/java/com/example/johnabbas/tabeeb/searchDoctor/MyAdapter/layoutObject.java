@@ -22,7 +22,7 @@ public class layoutObject {
             R.drawable.ic_dentist,
             R.drawable.ic_gynachologist,
             R.drawable.ic_hematologist,
-            R.drawable.ic_hematologist,
+            R.drawable.ic_ent,
             R.drawable.ic_trichologist,
     };
 }

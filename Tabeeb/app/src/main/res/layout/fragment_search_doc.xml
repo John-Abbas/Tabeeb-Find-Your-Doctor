@@ -4,24 +4,18 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.design.widget.TabLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/searchDocTab"/>
-
-    </android.support.design.widget.AppBarLayout>
-
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/container_doc"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
-
+        >
+        <android.support.design.widget.TabLayout
+            android:id="@+id/view_pager_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:tabMode="fixed"
+            app:tabGravity="fill" />
+    </android.support.v4.view.ViewPager>
 </android.support.design.widget.CoordinatorLayout>
