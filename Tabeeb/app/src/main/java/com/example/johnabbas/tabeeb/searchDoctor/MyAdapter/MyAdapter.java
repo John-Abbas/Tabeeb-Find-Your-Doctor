@@ -1,7 +1,9 @@
 package com.example.johnabbas.tabeeb.searchDoctor.MyAdapter;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,11 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.johnabbas.tabeeb.R;
+import com.example.johnabbas.tabeeb.searchDoctor.SearchDocs.SubFramentListDoctors;
 import com.example.johnabbas.tabeeb.searchDoctor.SubFragmentHospital;
 
 public class MyAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private FragmentManager mFragmentManager;
+
     public MyAdapter(Context mContext, FragmentManager mFragmentManager){
         this.mFragmentManager = mFragmentManager;
         this.mContext = mContext;
@@ -36,13 +40,17 @@ public class MyAdapter extends RecyclerView.Adapter {
 
         ((ListViewHolder) holder).linearSearchDoc.setOnClickListener((view)->{
 
-            Activity asd = (Activity)mContext;
             FragmentTransaction trans = mFragmentManager.beginTransaction();
             /*
              * IMPORTANT: We use the "root frame" defined in
              * "root_fragment.xml" as the reference to replace fragment
              */
-            trans.replace(R.id.frag_root, new SubFragmentHospital());
+            SubFramentListDoctors mFragment = new SubFramentListDoctors();
+            Bundle mBundle = new Bundle();
+            mBundle.putInt("Specialization",position);
+            mFragment.setArguments(mBundle);
+
+            trans.replace(R.id.frag_root, mFragment);
 
             /*
              * IMPORTANT: The following lines allow us to add the fragment
@@ -52,7 +60,6 @@ public class MyAdapter extends RecyclerView.Adapter {
             trans.addToBackStack(null);
 
             trans.commit();
-                Toast.makeText(mContext,"You have clicked " + position ,Toast.LENGTH_SHORT).show();
         });
 
 
