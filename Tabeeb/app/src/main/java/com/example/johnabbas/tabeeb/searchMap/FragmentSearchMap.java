@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.johnabbas.tabeeb.R;
+import com.example.johnabbas.tabeeb.searchDoctor.SearchHospitals.Hospital;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -17,6 +19,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class FragmentSearchMap extends Fragment implements OnMapReadyCallback {
 
@@ -53,8 +60,29 @@ public class FragmentSearchMap extends Fragment implements OnMapReadyCallback {
         MapsInitializer.initialize(getContext());
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(24.860470, 67.069953)).title("Mohammad Ali Jinnah University").snippet("My Alma Matter"));
-        CameraPosition University = CameraPosition.builder().target(new LatLng(24.860470, 67.069953)).zoom(16).bearing(0).tilt(45).build();
+        CameraPosition University = CameraPosition.builder().target(new LatLng(24.892176, 67.074775)).zoom(12).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(University));
+        firebaseHospitalSearch();
+    }
+
+    private void firebaseHospitalSearch() {
+        DatabaseReference userDetRef = FirebaseDatabase.getInstance().getReference("Hospitals");
+        Log.v("Trace",userDetRef.toString());
+        userDetRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
+                    Hospital rec = messageSnapshot.getValue(Hospital.class);
+                    rec.setKey(messageSnapshot.getKey());
+                    //hospitals.add(rec);
+                    mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(rec.getLatitude()),Double.parseDouble(rec.getLongitude()))).title(rec.getName()));
+                    Log.v("Retrieved Data",rec.getName() + " " + messageSnapshot.getKey());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 }

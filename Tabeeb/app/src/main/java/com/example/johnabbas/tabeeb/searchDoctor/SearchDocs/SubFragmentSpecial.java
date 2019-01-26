@@ -1,36 +1,21 @@
-package com.example.johnabbas.tabeeb.searchDoctor;
+package com.example.johnabbas.tabeeb.searchDoctor.SearchDocs;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.johnabbas.tabeeb.R;
-import com.example.johnabbas.tabeeb.searchDoctor.MyAdapter.MyAdapter;
+import com.example.johnabbas.tabeeb.searchDoctor.SearchDocs.Specialization.MyAdapter;
 
 public class SubFragmentSpecial extends Fragment {
 
     RecyclerView mRecyclerView;
     GridLayoutManager layoutManager;
-
-    // Store instance variables
-    private String title;
-    private int page;
-
-    // newInstance constructor for creating fragment with arguments
-    public static SubFragmentSpecial newInstance(int page, String title) {
-        SubFragmentSpecial fragmentFirst = new SubFragmentSpecial();
-        Bundle args = new Bundle();
-        args.putInt("someInt", page);
-        args.putString("someTitle", title);
-        fragmentFirst.setArguments(args);
-        return fragmentFirst;
-    }
 
     // Store instance variables based on arguments passed
     @Override
@@ -49,6 +34,8 @@ public class SubFragmentSpecial extends Fragment {
         layoutManager = new GridLayoutManager(getActivity(),2);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(layoutManager);
+
+        Log.v("Trace","Specialization Fragment Created");
         return view;
     }
 

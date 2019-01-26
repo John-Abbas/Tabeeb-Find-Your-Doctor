@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +21,7 @@ import com.example.johnabbas.tabeeb.about.FragmentAbout;
 import com.example.johnabbas.tabeeb.appointments.FragmentAppointment;
 import com.example.johnabbas.tabeeb.searchDoctor.FragmentSearchDoc;
 import com.example.johnabbas.tabeeb.searchMap.FragmentSearchMap;
+import com.example.johnabbas.tabeeb.userDetails.FragmentUserDetails;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -81,7 +83,9 @@ public class dashboard extends AppCompatActivity
         tvEmail  = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tvEmail);
         searchUser(userID);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentAppointment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSearchDoc()).commit();
+
+        navigationView.getMenu().getItem(1).setChecked(true);
     }
 
     private void searchUser(final String userID){
@@ -90,12 +94,12 @@ public class dashboard extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.exists()) {
-                    Intent newAct = new Intent(dashboard.this,userInfo.class);
+                    Intent newAct = new Intent(dashboard.this,userInfo_Activity.class);
                     newAct.putExtra("UID",userID);
                     startActivity(newAct);
                 }
                 else {
-                    userDetails userDet = dataSnapshot.child(userID).getValue(userDetails.class);
+                    userInfo userDet = dataSnapshot.child(userID).getValue(userInfo.class);
                     tvUserName.setText(userDet.name);
                     tvEmail.setText(userDet.email);
                 }
@@ -146,8 +150,11 @@ public class dashboard extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Log.v("Trace","Search Clicked" + Integer.toString(id));
+
         switch (id){
             case R.id.user_detail:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentUserDetails()).commit();
                 break;
 
             case R.id.search_doctor:

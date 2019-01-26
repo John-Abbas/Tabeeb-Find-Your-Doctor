@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.johnabbas.tabeeb.R;
 import com.example.johnabbas.tabeeb.dashboard;
-import com.example.johnabbas.tabeeb.userDetails;
+import com.example.johnabbas.tabeeb.userInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -85,7 +85,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private void insertUserDetails(String userID){
         DatabaseReference userDetailRef = FirebaseDatabase.getInstance().getReference("UserDetails");
 
-        userDetails userDet = new userDetails(etEmail.getText().toString(),etName.getText().toString()
+        userInfo userDet = new userInfo(etEmail.getText().toString(),etName.getText().toString()
                 ,((RadioButton)findViewById(radioSex.getCheckedRadioButtonId())).getText().toString(),Integer.parseInt(etAge.getText().toString())
                 ,((RadioButton)findViewById(radioUserType.getCheckedRadioButtonId())).getText().toString());
         userDetailRef.child(userID).setValue(userDet);

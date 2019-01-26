@@ -7,11 +7,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.johnabbas.tabeeb.R;
+import com.example.johnabbas.tabeeb.searchDoctor.SearchCustom.SubFragmentCustom;
+import com.example.johnabbas.tabeeb.searchDoctor.SearchDocs.RootSubFragment;
+import com.example.johnabbas.tabeeb.searchDoctor.SearchDocs.SubFragmentSpecial;
+import com.example.johnabbas.tabeeb.searchDoctor.SearchHospitals.SubFragmentHospital;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +26,6 @@ public class FragmentSearchDoc extends Fragment {
 
     SlidePagerAdapter mPagerAdapter;
     ViewPager vpPager;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,9 +38,21 @@ public class FragmentSearchDoc extends Fragment {
         mPagerAdapter.addFragment(new SubFragmentCustom(),"Custom");
         vpPager.setAdapter(mPagerAdapter);
 
+        vpPager.setOffscreenPageLimit(2);
+
+
+        Log.v("Trace","Fragment Search Doc Created");
+
         return mView;
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            // Fetch data or something...
+        }
+    }
 
     /* PagerAdapter class */
     public class SlidePagerAdapter extends FragmentPagerAdapter {
@@ -55,26 +71,37 @@ public class FragmentSearchDoc extends Fragment {
             mFragmentList.add(fragment);
         }
 
+
+
         @Override
         public Fragment getItem(int position) {
             /*
              * IMPORTANT: This is the point. We create a RootFragment acting as
              * a container for other fragments
              */
+            Bundle mBundle = new Bundle();
+
+            Log.v("Trace","Search Doc get Item Clicked " + Integer.toString(position));
+
             switch(position)
             {
                 case 0:
-                    return new RootSubFragment();
-
+                    RootSubFragment fragment = new RootSubFragment();
+                    mBundle.putString("caller","doc");
+                    fragment.setArguments(mBundle);
+                    return fragment;
                 case 1:
-                    return new SubFragmentHospital();
-
+                    com.example.johnabbas.tabeeb.searchDoctor.SearchHospitals.RootSubFragment fragHosp = new com.example.johnabbas.tabeeb.searchDoctor.SearchHospitals.RootSubFragment();
+                    return fragHosp;
                 case 2:
+                    //mBundle.putString("caller","custom");
                     return new SubFragmentCustom();
-
                 default:
                     return null;
             }
+
+
+
         }
 
         @Override

@@ -27,7 +27,7 @@
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".signUp.SignUp" />
-        <activity android:name=".userInfo"></activity>
+        <activity android:name=".userInfo_Activity"></activity>
 
         <!-- Google Map Api -->
         <meta-data

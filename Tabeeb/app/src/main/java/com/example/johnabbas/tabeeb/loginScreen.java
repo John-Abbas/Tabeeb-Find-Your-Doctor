@@ -182,7 +182,7 @@ public class loginScreen extends AppCompatActivity implements OnClickListener {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.exists()) {
-                    Intent newAct = new Intent(loginScreen.this,userInfo.class);
+                    Intent newAct = new Intent(loginScreen.this,userInfo_Activity.class);
                     newAct.putExtra("UID",userID);
                     startActivity(newAct);
                 }

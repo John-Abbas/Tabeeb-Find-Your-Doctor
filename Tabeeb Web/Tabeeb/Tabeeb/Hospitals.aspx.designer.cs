@@ -10,7 +10,7 @@
 namespace Tabeeb {
     
     
-    public partial class Add_Doctor {
+    public partial class Hospitals {
         
         /// <summary>
         /// name control.
@@ -22,15 +22,6 @@ namespace Tabeeb {
         protected global::System.Web.UI.WebControls.TextBox name;
         
         /// <summary>
-        /// special control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList special;
-        
-        /// <summary>
         /// location control.
         /// </summary>
         /// <remarks>
@@ -40,40 +31,22 @@ namespace Tabeeb {
         protected global::System.Web.UI.WebControls.TextBox location;
         
         /// <summary>
-        /// fee control.
+        /// latitude control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fee;
+        protected global::System.Web.UI.WebControls.TextBox latitude;
         
         /// <summary>
-        /// hours control.
+        /// longitude control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox hours;
-        
-        /// <summary>
-        /// age control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox age;
-        
-        /// <summary>
-        /// gender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList gender;
+        protected global::System.Web.UI.WebControls.TextBox longitude;
         
         /// <summary>
         /// verification control.
@@ -85,21 +58,21 @@ namespace Tabeeb {
         protected global::System.Web.UI.WebControls.DropDownList verification;
         
         /// <summary>
-        /// submit control.
+        /// add control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submit;
+        protected global::System.Web.UI.WebControls.Button add;
         
         /// <summary>
-        /// gvStudents control.
+        /// gvHospitals control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvStudents;
+        protected global::System.Web.UI.WebControls.GridView gvHospitals;
     }
 }

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Net;
 using System.Text;  // for class Encoding
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace Tabeeb
 {
@@ -14,8 +15,52 @@ namespace Tabeeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Button btn = (Button)FindControl("submit");
-            //btn.Click += new EventHandler(btnLogin_Click);
+            retrieveRecords();
+        }
+
+        private void retrieveRecords()
+        {
+            var request = (HttpWebRequest)WebRequest.Create("https://tabeeb-17d27.firebaseio.com/Doctors/.json");
+            request.ContentType = "application/json";
+            var response = request.GetResponse() as HttpWebResponse;
+            using (Stream str = response.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(str, Encoding.UTF8);
+                string data = reader.ReadToEnd();
+                BindFields(ParseDoctors(data));
+            }
+        }
+
+        public List<DAL.Doctors> ParseDoctors(string json)
+        {
+            List<DAL.Doctors> docs = new List<DAL.Doctors>();
+            JObject jObject = JObject.Parse(json);
+            var jUser = jObject.Children().ToList();
+
+            foreach (JToken token in jUser)
+            {
+                var doc = token.First();
+                docs.Add(new DAL.Doctors(){
+                    ID = (string)token.First().Path,
+                    Age = (int)doc["Age"],
+                    Fee = (string)doc["Fee"],
+                    Gender = (int)doc["Gender"],
+                    Hours = (string)doc["Hours"],
+                    Location = (string)doc["Location"],
+                    Name = (string)doc["Name"],
+                    Special = (int)doc["Special"],
+                    Verification = (int)doc["Verification"]
+
+                });
+            }
+
+            return docs;
+        }
+        
+        private void BindFields(List<DAL.Doctors> docs)
+        {
+            gvStudents.DataSource = docs;
+            gvStudents.DataBind();
         }
 
         protected void Unnamed1_Click(object sender, EventArgs e)
@@ -41,6 +86,21 @@ namespace Tabeeb
             request.GetRequestStream().Write(buffer, 0, buffer.Length);
             var response = request.GetResponse();
             json = (new StreamReader(response.GetResponseStream())).ReadToEnd();
+        }
+
+
+        protected void gvStudents_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            /*int rowIndex = int.Parse(e.CommandArgument.ToString());
+            int studentID = (int)gvStudents.DataKeys[rowIndex].Value;
+            if (e.CommandName == "editStudent")
+            {
+                Response.Redirect("AddStudents.aspx?studentID=" + studentID);
+            }
+            else if (e.CommandName == "deleteStudent")
+            {
+                deleteRecord(studentID);
+            }*/
         }
     }
 }

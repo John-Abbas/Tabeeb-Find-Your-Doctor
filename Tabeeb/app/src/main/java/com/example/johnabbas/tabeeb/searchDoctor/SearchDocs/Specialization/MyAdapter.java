@@ -1,7 +1,5 @@
-package com.example.johnabbas.tabeeb.searchDoctor.MyAdapter;
+package com.example.johnabbas.tabeeb.searchDoctor.SearchDocs.Specialization;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,10 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.example.johnabbas.tabeeb.R;
 import com.example.johnabbas.tabeeb.searchDoctor.SearchDocs.SubFramentListDoctors;
-import com.example.johnabbas.tabeeb.searchDoctor.SubFragmentHospital;
 
 public class MyAdapter extends RecyclerView.Adapter {
     private Context mContext;
@@ -48,6 +45,8 @@ public class MyAdapter extends RecyclerView.Adapter {
             SubFramentListDoctors mFragment = new SubFramentListDoctors();
             Bundle mBundle = new Bundle();
             mBundle.putInt("Specialization",position);
+            mBundle.putString("Hospital","none");
+            mBundle.putString("Caller","Docs");
             mFragment.setArguments(mBundle);
 
             trans.replace(R.id.frag_root, mFragment);

@@ -1,4 +1,4 @@
-package com.example.johnabbas.tabeeb.searchDoctor.MyAdapter;
+package com.example.johnabbas.tabeeb.searchDoctor.SearchDocs.Specialization;
 
 import com.example.johnabbas.tabeeb.R;
 

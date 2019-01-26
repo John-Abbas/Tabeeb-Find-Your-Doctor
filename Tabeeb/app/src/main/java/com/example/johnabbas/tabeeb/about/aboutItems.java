@@ -8,35 +8,27 @@ public class aboutItems {
             "Miss Hira Farman",
             "John Abbas Jaffery",
             "Maaz Muhammad Khan",
-            "Ishfaque Hussain Mangi",
-            "Dr Tafseer",
-            "Miss Samia Bashir"
+            "Ishfaque Hussain Mangi"
     };
 
     public static String[] designation =  new String[]{
             "Team Lead",
             "Developer",
             "Developer",
-            "Developer",
-            "Product Owner",
-            "Product Owner"
+            "Developer"
     };
 
     public static String[] emailId =  new String[]{
             "hira.farman@jinnah.edu",
             "jajaffery7@gmail.com",
             "maazkhan1211@gmail.com",
-            "sp14be0012@maju.edu.pk",
-            "tafseer.ahmed@jinnah.edu",
-            "samia@jinnah.edu"
+            "sp14be0012@maju.edu.pk"
     };
 
     public static int[] images = new int[]{
             R.mipmap.hira,
             R.mipmap.john,
             R.mipmap.maaz,
-            R.mipmap.ishfaque,
-            R.mipmap.tafseer,
-            R.mipmap.samia
+            R.mipmap.ishfaque
     };
 }

@@ -1,8 +1,8 @@
-﻿<%@ Page Title="Add Doctor" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Add Doctor.aspx.cs" Inherits="Tabeeb.Add_Doctor" %>
+﻿<%@ Page Title="Doctors" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Add Doctor.aspx.cs" Inherits="Tabeeb.Add_Doctor" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-  <h1>Add Doctor</h1>
+  <h1>Doctors</h1>
   <div class="inset">
   <p>
     <label >Name : </label>
@@ -56,5 +56,16 @@
       
   <asp:Button runat="server" id="submit" Text="Add Doctor" OnClick="Unnamed1_Click" />
 
+
+  <asp:GridView ID="gvStudents" CssClass="table table-striped" AutoGenerateColumns="false" DataKeyNames="ID" ShowHeaderWhenEmpty="true" runat="server" OnRowCommand="gvStudents_RowCommand">
+        <Columns>
+            <asp:BoundField DataField="Name" HeaderText="Doctor" SortExpression="Name" />
+            <asp:BoundField DataField="Special" HeaderText="Specialization" SortExpression="Special" />
+            <asp:BoundField DataField="Location" HeaderText="Hospital" SortExpression="Location" />
+            <asp:BoundField DataField="Verification" HeaderText="Verified" SortExpression="Verification" />
+            
+            
+        </Columns>
+    </asp:GridView>
 
 </asp:Content>

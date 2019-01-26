@@ -66,7 +66,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/Add Doctor">Add Doctor</a></li>
+                        <li><a runat="server" href="~/Add Doctor">Doctor</a></li>
+                        <li><a runat="server" href="~/Hospitals">Contact</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
                 </div>
