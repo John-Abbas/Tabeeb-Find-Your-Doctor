@@ -15,7 +15,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".loginScreen"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:label="@string/loginTitle">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,8 +28,10 @@
             android:name=".dashboard"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".signUp.SignUp" />
-        <activity android:name=".userInfo_Activity"></activity>
+        <activity android:name=".signUp.SignUp"
+            android:label="@string/signUpTitle"/>
+        <activity android:name=".userInfo_Activity"
+            android:label="@string/userInfoTitle"/>
 
         <!-- Google Map Api -->
         <meta-data

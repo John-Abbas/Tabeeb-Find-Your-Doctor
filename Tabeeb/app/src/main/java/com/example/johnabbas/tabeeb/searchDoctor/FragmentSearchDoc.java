@@ -1,8 +1,10 @@
 package com.example.johnabbas.tabeeb.searchDoctor;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.johnabbas.tabeeb.R;
 import com.example.johnabbas.tabeeb.searchDoctor.SearchCustom.SubFragmentCustom;
@@ -26,12 +29,15 @@ public class FragmentSearchDoc extends Fragment {
 
     SlidePagerAdapter mPagerAdapter;
     ViewPager vpPager;
+    TabLayout tbLayout;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView =  inflater.inflate(R.layout.fragment_search_doc,container,false);
 
         vpPager = (ViewPager)mView.findViewById(R.id.container_doc);
+        tbLayout = (TabLayout) mView.findViewById(R.id.view_pager_tab);
+
         mPagerAdapter = new SlidePagerAdapter(getChildFragmentManager());
         mPagerAdapter.addFragment(new SubFragmentSpecial(),"Specialization");
         mPagerAdapter.addFragment(new SubFragmentHospital(),"Hospital");
@@ -39,7 +45,6 @@ public class FragmentSearchDoc extends Fragment {
         vpPager.setAdapter(mPagerAdapter);
 
         vpPager.setOffscreenPageLimit(2);
-
 
         Log.v("Trace","Fragment Search Doc Created");
 

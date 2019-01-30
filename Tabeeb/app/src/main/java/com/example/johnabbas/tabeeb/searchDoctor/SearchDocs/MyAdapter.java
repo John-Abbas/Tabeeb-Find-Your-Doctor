@@ -49,6 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter {
              */
             FragmentNewAppoint mFragment = new FragmentNewAppoint();
             Bundle mBundle = new Bundle();
+            mBundle.putString("DocId",SubFramentListDoctors.doctors.get(position).getID());
             mBundle.putString("Name",((DoctorViewHolder) holder).name.getText().toString());
             mBundle.putString("Fee",((DoctorViewHolder) holder).fee.getText().toString());
             mBundle.putString("Hours",((DoctorViewHolder) holder).hours.getText().toString());

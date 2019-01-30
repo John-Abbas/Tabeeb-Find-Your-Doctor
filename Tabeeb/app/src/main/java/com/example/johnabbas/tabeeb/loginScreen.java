@@ -2,6 +2,7 @@ package com.example.johnabbas.tabeeb;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.johnabbas.tabeeb.signUp.SignUp;
@@ -46,6 +48,12 @@ public class loginScreen extends AppCompatActivity implements OnClickListener {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_appbar);
+        TextView tvTitle = (TextView) getSupportActionBar().getCustomView().findViewById(R.id.mytext);
+        tvTitle.setText("Login");
+
         FirebaseApp.initializeApp(this);
 
         etEmail = (EditText) findViewById(R.id.etEmailId);

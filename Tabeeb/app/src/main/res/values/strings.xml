@@ -1,12 +1,11 @@
 <resources>
     <string name="app_name">Tabeeb</string>
-    <string name="title_activity_dashboard">dashboard</string>
+    <string name="title_activity_dashboard">Tabeeb</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Tabeeb</string>
+    <string name="nav_header_subtitle">tabeeb@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
 
     <string name="etEmailHint">Enter Email Address</string>
@@ -21,5 +20,7 @@
     <string name="radTextFemale">Female</string>
     <string name="radDoctor">Doctor</string>
     <string name="radGenUser">Not a Doctor</string>
-    <!--<string name="default_web_client_id">885851601247-2tujsik1qb9bere41rnnehun9ghteq58.apps.googleusercontent.com</string>-->
+    <string name="signUpTitle">Sign Up</string>
+    <string name="userInfoTitle">User Info</string>
+    <string name="loginTitle">Login</string>
 </resources>

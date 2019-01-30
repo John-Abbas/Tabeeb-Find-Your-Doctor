@@ -2,6 +2,7 @@ package com.example.johnabbas.tabeeb.signUp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.johnabbas.tabeeb.R;
@@ -33,6 +35,11 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_appbar);
+        TextView tvTitle = (TextView) getSupportActionBar().getCustomView().findViewById(R.id.mytext);
+        tvTitle.setText("Sign Up");
 
         mAuth = FirebaseAuth.getInstance();
         etEmail = (EditText) findViewById(R.id.etEmailId);

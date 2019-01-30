@@ -72,6 +72,7 @@ public class SubFramentListDoctors extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
                     doctorItem rec = messageSnapshot.getValue(doctorItem.class);
+                    rec.setID(messageSnapshot.getKey());
                     doctors.add(rec);
                     Log.v("Retrieved Data",rec.getName() + " " + rec.getLocation());
                 }
@@ -100,6 +101,7 @@ public class SubFramentListDoctors extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
                     doctorItem rec = messageSnapshot.getValue(doctorItem.class);
+                    rec.setID(messageSnapshot.getKey());
                     doctors.add(rec);
                     Log.v("Retrieved Data",rec.getName() + " " + rec.getLocation());
                 }

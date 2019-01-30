@@ -3,10 +3,18 @@ package com.example.johnabbas.tabeeb.searchDoctor.SearchDocs;
 public class doctorItem {
 
     private int Age,Gender,Special,Verification;
-    private String Fee,Hours,Location,Name;
+    private String Fee,Hours,Location,Name,ID;
 
 
     public doctorItem(){}
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public void setAge(int Age) {
         this.Age = Age;
