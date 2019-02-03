@@ -112,6 +112,24 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="@dimen/etWidth"
+                    android:layout_height="@dimen/etHeight"
+                    android:id="@+id/etPhoneNum"
+                    android:hint="03343979290"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edit_round"
+                    android:padding="5dp"
+                    android:drawableStart="@drawable/phone"
+                    android:inputType="number"
+                    android:textSize="20sp"/>
+            </LinearLayout>
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

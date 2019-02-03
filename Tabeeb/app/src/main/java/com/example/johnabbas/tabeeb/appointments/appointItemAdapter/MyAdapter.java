@@ -54,8 +54,8 @@ public class MyAdapter extends RecyclerView.Adapter {
 
         ((AppointmentViewHolder) holder).cancel.setOnClickListener((view)->{
             appRef.child(FragmentAppointment.appointments.get(position).getKey()).removeValue();
+            //mRecycler.removeViewAt(position);
             FragmentAppointment.appointments.remove(position);
-            mRecycler.removeViewAt(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, FragmentAppointment.appointments.size());
 

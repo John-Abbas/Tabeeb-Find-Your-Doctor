@@ -106,8 +106,8 @@ public class dashboard extends AppCompatActivity
                 }
                 else {
                     userInfo userDet = dataSnapshot.child(userID).getValue(userInfo.class);
-                    tvUserName.setText(userDet.name);
-                    tvEmail.setText(userDet.email);
+                    tvUserName.setText(userDet.getName());
+                    tvEmail.setText(userDet.getEmail());
                 }
             }
 

@@ -29,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
-    private EditText etEmail,etPass,etConPass,etName,etAge;
+    private EditText etEmail,etPass,etConPass,etName,etAge,etPhoneNum;
     private RadioGroup radioSex,radioUserType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         etAge  = (EditText) findViewById(R.id.etAge);
         radioSex = (RadioGroup) findViewById(R.id.radioSex);
         radioUserType = (RadioGroup) findViewById(R.id.radioUserType);
+        etPhoneNum = (EditText) findViewById(R.id.etPhoneNum);
 
         findViewById(R.id.btn_signUp).setOnClickListener(this);
     }
@@ -94,7 +95,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         userInfo userDet = new userInfo(etEmail.getText().toString(),etName.getText().toString()
                 ,((RadioButton)findViewById(radioSex.getCheckedRadioButtonId())).getText().toString(),Integer.parseInt(etAge.getText().toString())
-                ,((RadioButton)findViewById(radioUserType.getCheckedRadioButtonId())).getText().toString());
+                ,((RadioButton)findViewById(radioUserType.getCheckedRadioButtonId())).getText().toString(),etPhoneNum.getText().toString());
         userDetailRef.child(userID).setValue(userDet);
     }
 
@@ -128,6 +129,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         }
         if((Integer.parseInt(etAge.getText().toString()) > 200) || (Integer.parseInt(etAge.getText().toString()) < 1)){
             Toast.makeText(SignUp.this, "Enter Age between 1 & 200", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(etPhoneNum.getText().length() != 11){
+            Toast.makeText(SignUp.this, "Enter valid mobile number", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

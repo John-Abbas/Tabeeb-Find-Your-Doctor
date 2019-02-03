@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class userInfo_Activity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseUser user;
-    private EditText etEmail,etName,etAge;
+    private EditText etEmail,etName,etAge,etPhoneNum;
     private RadioGroup radioSex,radioUserType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class userInfo_Activity extends AppCompatActivity implements View.OnClick
         etAge  = (EditText) findViewById(R.id.etAge);
         radioSex = (RadioGroup) findViewById(R.id.radioSex);
         radioUserType = (RadioGroup) findViewById(R.id.radioUserType);
+        etPhoneNum = (EditText) findViewById(R.id.etPhoneNum);
 
         findViewById(R.id.btn_signUp).setOnClickListener(this);
         etEmail.setText(user.getEmail());
@@ -49,7 +50,7 @@ public class userInfo_Activity extends AppCompatActivity implements View.OnClick
 
         userInfo userDet = new userInfo(etEmail.getText().toString(),etName.getText().toString()
                 ,((RadioButton)findViewById(radioSex.getCheckedRadioButtonId())).getText().toString(),Integer.parseInt(etAge.getText().toString())
-                ,((RadioButton)findViewById(radioUserType.getCheckedRadioButtonId())).getText().toString());
+                ,((RadioButton)findViewById(radioUserType.getCheckedRadioButtonId())).getText().toString(),etPhoneNum.getText().toString());
         userDetailRef.child(userID).setValue(userDet);
     }
 
@@ -84,6 +85,10 @@ public class userInfo_Activity extends AppCompatActivity implements View.OnClick
         }
         if((Integer.parseInt(etAge.getText().toString()) > 200) || (Integer.parseInt(etAge.getText().toString()) < 1)){
             Toast.makeText(userInfo_Activity.this, "Enter Age between 1 & 200", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(etPhoneNum.getText().length() != 11){
+            Toast.makeText(userInfo_Activity.this, "Enter correct mobile number", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

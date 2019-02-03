@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class FragmentAppointment extends Fragment {
                     appointmentDetails rec = messageSnapshot.getValue(appointmentDetails.class);
                     rec.setKey(messageSnapshot.getKey());
                     appointments.add(rec);
+                    Log.v("Trace",messageSnapshot.toString());
                 }
 
                 if(appointments.size() == 0){
