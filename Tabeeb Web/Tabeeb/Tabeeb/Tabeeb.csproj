@@ -109,7 +109,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\lobster-reguler.ttf" />
+    <None Include="Properties\PublishProfiles\CAP-25.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="photos\add-doctor.jpg" />
+    <Content Include="photos\add-hospital.jpg" />
+    <Content Include="photos\contact-us.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

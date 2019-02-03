@@ -22,13 +22,20 @@ namespace Tabeeb
         {
             var request = (HttpWebRequest)WebRequest.Create("https://tabeeb-17d27.firebaseio.com/Doctors/.json");
             request.ContentType = "application/json";
-            var response = request.GetResponse() as HttpWebResponse;
-            using (Stream str = response.GetResponseStream())
-            {
-                StreamReader reader = new StreamReader(str, Encoding.UTF8);
-                string data = reader.ReadToEnd();
-                BindFields(ParseDoctors(data));
+            try { 
+                
+                var response = request.GetResponse() as HttpWebResponse;
+            
+                using (Stream str = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(str, Encoding.UTF8);
+                    string data = reader.ReadToEnd();
+                    BindFields(ParseDoctors(data));
+                }
             }
+            catch { }
+            
+            
         }
 
         public List<DAL.Doctors> ParseDoctors(string json)

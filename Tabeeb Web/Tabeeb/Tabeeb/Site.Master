@@ -29,6 +29,34 @@
     firebase.initializeApp(config);
     </script>
 
+    <style>
+
+        .vertical-center {
+            text-align: center;
+        }
+        .vert-align{
+            align-content:center;
+        }
+        .image-size{
+            width:100px;
+            height:100px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .button-style{
+            width:inherit;
+            align-self:center;
+        }
+        .margin-bottom{
+            margin-bottom:10px;
+        }
+
+        .width-standard{
+            width:200px;
+        }
+    </style>
+
 </head>
 <body>
     <form runat="server">
@@ -66,8 +94,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/Add Doctor">Doctor</a></li>
-                        <li><a runat="server" href="~/Hospitals">Contact</a></li>
+                        <li><a runat="server" href="~/Add Doctor">Doctors</a></li>
+                        <li><a runat="server" href="~/Hospitals">Hospitals</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
                 </div>
