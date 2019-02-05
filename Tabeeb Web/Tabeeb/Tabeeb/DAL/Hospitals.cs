@@ -13,6 +13,7 @@ namespace Tabeeb.DAL
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public int Verification { get; set; }
+        public string Contact { get; set; }
 
     }
 }

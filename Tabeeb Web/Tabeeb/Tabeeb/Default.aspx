@@ -35,5 +35,17 @@
             </a>
         </div>
     </div>
+    
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4 vert-align " style="padding: 50px;">
+            <a href="Appointments">
+                <div class="panel panel-default" style="padding: 50px;">
 
+                    <img src="/photos/appointment.png" class="img-rounded image-size" />
+
+                </div>
+            </a>
+        </div>
+    </div>
 </asp:Content>

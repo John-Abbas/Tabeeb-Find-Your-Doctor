@@ -17,5 +17,6 @@ namespace Tabeeb.DAL
         public string Name { get; set; }
         public int Special { get; set; }
         public int Verification { get; set; }
+        public string specialName { get; set; }
     }
 }

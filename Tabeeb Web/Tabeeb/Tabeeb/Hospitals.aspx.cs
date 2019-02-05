@@ -48,8 +48,8 @@ namespace Tabeeb
                     Name = (string)hospital["Name"],
                     Verification = (int)hospital["Verification"],
                     Latitude = (string)hospital["Latitude"],
-                    Longitude = (string)hospital["Longitude"]
-
+                    Longitude = (string)hospital["Longitude"],
+                    Contact = (string)hospital["Contact"]
                 });
             }
 
@@ -64,13 +64,20 @@ namespace Tabeeb
 
         protected void AddBtn_Click(object sender, EventArgs e)
         {
+            if (validateInputs())
+                addRecord();
+        }
+
+        private void addRecord() 
+        {
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(new
             {
                 Name = name.Text,
                 Location = location.Text,
                 Latitude = latitude.Text,
                 Longitude = longitude.Text,
-                Verification = Convert.ToInt32(verification.SelectedValue)
+                Verification = Convert.ToInt32(verification.SelectedValue),
+                Contact = Contact.Text
             });
 
             var request = WebRequest.CreateHttp("https://tabeeb-17d27.firebaseio.com/Hospitals/.json");
@@ -83,6 +90,21 @@ namespace Tabeeb
             json = (new StreamReader(response.GetResponseStream())).ReadToEnd();
 
             retrieveRecords();
+        }
+
+        private Boolean validateInputs()
+        {
+            if (name.Text.Equals(""))
+                return false;
+            if (location.Text.Equals(""))
+                return false;
+            if (latitude.Text.Equals(""))
+                return false;
+            if (longitude.Text.Equals(""))
+                return false;
+            if (Contact.Text.Length != 11)
+                return false;
+            return true;
         }
 
         protected void gvHospital_RowCommand(object sender, GridViewCommandEventArgs e)

@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Add Doctor.aspx" />
+    <Content Include="Appointments.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -114,6 +115,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="photos\add-doctor.jpg" />
     <Content Include="photos\add-hospital.jpg" />
+    <Content Include="photos\appointment.png" />
     <Content Include="photos\contact-us.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -148,6 +150,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="UpdateStatus.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -169,6 +172,13 @@
     <Compile Include="Add Doctor.aspx.designer.cs">
       <DependentUpon>Add Doctor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Appointments.aspx.cs">
+      <DependentUpon>Appointments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Appointments.aspx.designer.cs">
+      <DependentUpon>Appointments.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contact.aspx.cs">
@@ -178,8 +188,11 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Appointments.cs" />
     <Compile Include="DAL\Doctors.cs" />
     <Compile Include="DAL\Hospitals.cs" />
+    <Compile Include="DAL\Specialization.cs" />
+    <Compile Include="DAL\UserDetails.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -211,6 +224,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateStatus.aspx.cs">
+      <DependentUpon>UpdateStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateStatus.aspx.designer.cs">
+      <DependentUpon>UpdateStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

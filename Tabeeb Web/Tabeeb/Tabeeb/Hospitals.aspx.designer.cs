@@ -49,6 +49,15 @@ namespace Tabeeb {
         protected global::System.Web.UI.WebControls.TextBox longitude;
         
         /// <summary>
+        /// Contact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Contact;
+        
+        /// <summary>
         /// verification control.
         /// </summary>
         /// <remarks>

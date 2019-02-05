@@ -10,7 +10,6 @@
                 <div class="row">
                     <div class="col-xs-4">
                         <label>Name : </label>
-
                     </div>
                     <div class="col-xs-4">
                         <asp:TextBox runat="server" ID="name" type="text" CssClass="form-control width-standard" />
@@ -130,9 +129,8 @@
             <asp:GridView ID="gvStudents" CssClass="table table-striped" AutoGenerateColumns="false" DataKeyNames="ID" ShowHeaderWhenEmpty="true" runat="server" OnRowCommand="gvStudents_RowCommand">
                 <Columns>
                     <asp:BoundField DataField="Name" HeaderText="Doctor" SortExpression="Name" />
-                    <asp:BoundField DataField="Special" HeaderText="Specialization" SortExpression="Special" />
+                    <asp:BoundField DataField="specialName" HeaderText="Specialization" SortExpression="specialName" />
                     <asp:BoundField DataField="Location" HeaderText="Hospital" SortExpression="Location" />
-                    <asp:BoundField DataField="Verification" HeaderText="Verified" SortExpression="Verification" />
 
 
                 </Columns>

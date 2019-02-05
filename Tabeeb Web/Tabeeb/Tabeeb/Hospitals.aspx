@@ -51,6 +51,16 @@
             <div class="col-xs-4">
                 <div class="row">
                     <div class="col-xs-4">
+                        <label>Contact : </label>
+                    </div>
+                    <div class="col-xs-4">
+                        <asp:TextBox runat="server" ID="Contact" type="number" CssClass="form-control width-standard" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="row">
+                    <div class="col-xs-4">
                         <label>Verification : </label>
                     </div>
                     <div class="col-xs-4">
@@ -81,7 +91,7 @@
                     <Columns>
                         <asp:BoundField DataField="Name" HeaderText="Hospital" SortExpression="Name" />
                         <asp:BoundField DataField="Location" HeaderText="Location" SortExpression="Location" />
-                        <asp:BoundField DataField="Verification" HeaderText="Verified" SortExpression="Verification" />
+                        <asp:BoundField DataField="Contact" HeaderText="Contact" SortExpression="Contact" />
 
 
                     </Columns>
