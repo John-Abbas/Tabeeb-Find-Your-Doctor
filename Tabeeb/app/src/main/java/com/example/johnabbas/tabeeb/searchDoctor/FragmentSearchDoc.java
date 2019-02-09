@@ -41,7 +41,7 @@ public class FragmentSearchDoc extends Fragment {
         mPagerAdapter = new SlidePagerAdapter(getChildFragmentManager());
         mPagerAdapter.addFragment(new SubFragmentSpecial(),"Specialization");
         mPagerAdapter.addFragment(new SubFragmentHospital(),"Hospital");
-        mPagerAdapter.addFragment(new SubFragmentCustom(),"Custom");
+        //mPagerAdapter.addFragment(new SubFragmentCustom(),"Custom");
         vpPager.setAdapter(mPagerAdapter);
 
         vpPager.setOffscreenPageLimit(2);
@@ -62,7 +62,7 @@ public class FragmentSearchDoc extends Fragment {
     /* PagerAdapter class */
     public class SlidePagerAdapter extends FragmentPagerAdapter {
 
-        static final int NUM_ITEMS = 3;
+        static final int NUM_ITEMS = 2;
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -98,9 +98,9 @@ public class FragmentSearchDoc extends Fragment {
                 case 1:
                     com.example.johnabbas.tabeeb.searchDoctor.SearchHospitals.RootSubFragment fragHosp = new com.example.johnabbas.tabeeb.searchDoctor.SearchHospitals.RootSubFragment();
                     return fragHosp;
-                case 2:
+                //case 2:
                     //mBundle.putString("caller","custom");
-                    return new SubFragmentCustom();
+                //    return new SubFragmentCustom();
                 default:
                     return null;
             }

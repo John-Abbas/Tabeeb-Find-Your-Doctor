@@ -38,11 +38,6 @@
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary" CommandName="editRec" Text="Update Status" CommandArgument="<%# Container.DataItemIndex %>"></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Details">
-                            <ItemTemplate>
-                                <asp:LinkButton runat="server" CssClass="btn btn-info" CommandName="showDetails" Text="Details" CommandArgument="<%# Container.DataItemIndex %>"></asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
